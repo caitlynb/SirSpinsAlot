@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,11 +23,19 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static OI m_oi;
+  //public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static OI r_oi;
+  public static ArduinoLEDs r_arduino;
+  public static DriveBaseMecanum r_drivebase;
+  public static RotatingManipulator r_wrist;
+  public static SensorPetOverSPI r_frontleftsensor;
+  public static SensorPetOverSPI r_frontrightsensor;
+  public static SensorPetOverSPI r_sideforwardsensor;
+  public static SensorPetOverSPI r_siderearsensor;
+  
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command r_autonomousCommand;
+  SendableChooser<Command> rd_autocommandhooser = new SendableChooser<>();
   
 
   /**
@@ -36,10 +44,23 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_chooser.addDefault("Default Auto", new ExampleCommand());
-    // chooser.addObject("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    r_oi = new OI();
+    // m_chooser.addDefault("Default Auto", new ExampleCommand());
+    // m_chooser.addObject("My Auto", new MyAutoCommand());
+
+    SmartDashboard.putData("Auto mode", rd_autocommandhooser);
+
+    r_arduino = new ArduinoLEDs();
+
+    r_drivebase = new DriveBaseMecanum();
+
+    r_wrist = new RotatingManipulator();
+
+    r_frontleftsensor = new SensorPetOverSPI(RobotMap.sp_FrontLeft_SPIID);
+    r_frontrightsensor = new SensorPetOverSPI(RobotMap.sp_FrontRight_SPIID);
+    r_sideforwardsensor = new SensorPetOverSPI(RobotMap.sp_SideFront_SPIID);
+    r_siderearsensor = new SensorPetOverSPI(RobotMap.sp_SideRear_SPIID);
+
   }
 
   /**
@@ -81,7 +102,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    r_autonomousCommand = rd_autocommandhooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -91,8 +112,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (r_autonomousCommand != null) {
+      r_autonomousCommand.start();
     }
   }
 
@@ -110,8 +131,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (r_autonomousCommand != null) {
+      r_autonomousCommand.cancel();
     }
   }
 

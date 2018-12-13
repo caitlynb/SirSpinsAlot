@@ -21,4 +21,11 @@ public class RotatingManipulator extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
+  public double returnCurrentAngle(){
+      // returns the current angle of the joint as read by an encoder.
+      return 0.0;
+  }
+
+  
 }

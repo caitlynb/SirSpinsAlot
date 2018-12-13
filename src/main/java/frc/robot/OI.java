@@ -6,10 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import javax.print.attribute.standard.JobPriority;
+//import javax.print.attribute.standard.JobPriority;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -52,4 +53,18 @@ public class OI {
   Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 3);
   Button turnAirlockGearButton = new JoystickButton(driverJoystick, 4);
   Button turnAirlockBarButton = new JoystickButton(driverJoystick, 5);
+
+  // Select one of the below and uncomment depending on what controller is in use.
+
+  // CAB:  FIXME WITH REAL NUMBERS
+  // Logitech 3DPro
+  // public static int driverJoystickXAxis = 1;
+  // public static int driverJoystickYAxis = 2;
+  // public static int driverJoystickTwistAxis = 3;
+
+  // CAB:  FIXME WITH REAL NUMBERS
+  // PS4 Gamepad
+  public static int driverJoystickXAxis = 1;
+  public static int driverJoystickYAxis = 2;
+  public static int driverJoystickTwistAxis = 3;
 }
