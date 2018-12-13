@@ -27,7 +27,9 @@ public class Robot extends TimedRobot {
   public static OI r_oi;
   public static ArduinoLEDs r_arduino;
   public static DriveBaseMecanum r_drivebase;
-  public static RotatingManipulator r_wrist;
+
+  public static RotatingManipulator r_mc_wrist;
+
   public static SensorPetOverSPI r_frontleftsensor;
   public static SensorPetOverSPI r_frontrightsensor;
   public static SensorPetOverSPI r_sideforwardsensor;
@@ -50,17 +52,18 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData("Auto mode", rd_autocommandhooser);
 
-    r_arduino = new ArduinoLEDs();
+    r_arduino = new ArduinoLEDs(RobotMap.arduino_I2CADDR);
 
     r_drivebase = new DriveBaseMecanum();
 
-    r_wrist = new RotatingManipulator();
+    r_mc_wrist = new RotatingManipulator();
 
     r_frontleftsensor = new SensorPetOverSPI(RobotMap.sp_FrontLeft_SPIID);
     r_frontrightsensor = new SensorPetOverSPI(RobotMap.sp_FrontRight_SPIID);
     r_sideforwardsensor = new SensorPetOverSPI(RobotMap.sp_SideFront_SPIID);
     r_siderearsensor = new SensorPetOverSPI(RobotMap.sp_SideRear_SPIID);
 
+    
   }
 
   /**

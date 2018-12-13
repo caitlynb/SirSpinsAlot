@@ -38,5 +38,9 @@ public class RobotMap {
   public static int sp_SideFront_SPIID = 3;
   public static int sp_SideRear_SPIID = 4;
 
+  // location of the Arduino for LEDs
+  public static int arduino_I2CADDR = 8;
 
+  // abuse of the robotmap class appears below, as these are not *maps* per se, but rather constants
+  public static int kMCTimeoutMS = 20;
 }

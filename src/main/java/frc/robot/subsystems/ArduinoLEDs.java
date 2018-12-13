@@ -16,6 +16,21 @@ public class ArduinoLEDs extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  private int i2c_bus_address;
+
+  public ArduinoLEDs(){
+    this(7);
+  }
+
+  public ArduinoLEDs(int i2caddress){
+    if(i2caddress >= 1 && i2caddress <= 255)
+      this.i2c_bus_address = i2caddress;
+    else
+      this.i2c_bus_address = 7;
+
+
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
