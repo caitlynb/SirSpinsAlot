@@ -10,6 +10,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
+import frc.robot.commands.*;
 
 
 /**
@@ -53,6 +54,7 @@ public class OI {
   Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 3);
   Button turnAirlockGearButton = new JoystickButton(driverJoystick, 4);
   Button turnAirlockBarButton = new JoystickButton(driverJoystick, 5);
+  Button toggleHeadlights = new JoystickButton(driverJoystick, 6);
 
   // Select one of the below and uncomment depending on what controller is in use.
 
@@ -67,4 +69,9 @@ public class OI {
   public static int driverJoystickXAxis = 1;
   public static int driverJoystickYAxis = 2;
   public static int driverJoystickTwistAxis = 3;
+
+  // Set up some commands
+  public OI(){
+    toggleHeadlights.toggleWhenPressed(new TurnOnHeadlights());
+  }
 }

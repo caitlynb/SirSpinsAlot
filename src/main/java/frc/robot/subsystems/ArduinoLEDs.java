@@ -7,6 +7,10 @@
 
 package frc.robot.subsystems;
 
+import java.awt.Color;
+
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +21,8 @@ public class ArduinoLEDs extends Subsystem {
   // here. Call these from Commands.
 
   private int i2c_bus_address;
+  private I2C arduino;
+  private byte[] transmitbuffer;
 
   public ArduinoLEDs(){
     this(7);
@@ -28,6 +34,9 @@ public class ArduinoLEDs extends Subsystem {
     else
       this.i2c_bus_address = 7;
 
+    arduino = new I2C(Port.kOnboard, i2c_bus_address);
+
+    transmitbuffer = new byte[20];
 
   }
 
@@ -35,5 +44,14 @@ public class ArduinoLEDs extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void setcolor(Color newcolor){
+    transmitbuffer[0] = 0;
+    transmitbuffer[1] = 0;
+    transmitbuffer[2] = (byte)newcolor.getRed();
+    transmitbuffer[3] = (byte)newcolor.getGreen();
+    transmitbuffer[4] = (byte)newcolor.getBlue();
+    arduino.writeBulk(transmitbuffer, 5);
   }
 }

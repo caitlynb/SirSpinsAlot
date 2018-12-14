@@ -29,7 +29,6 @@ public class SensorPetOverSPI extends Subsystem {
   private MeasurementSystem units;
 
   public enum DistanceMode {
-    ONOFF, 
     ULTRASONIC,
     LIDAR
   }
@@ -87,12 +86,17 @@ public class SensorPetOverSPI extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void chooseSensor(DistanceMode newMode){
+  public void configUltrasonic(){
+    this.chooseSensor(DistanceMode.ULTRASONIC);
+  }
+
+  public void configLIDAR(){
+    this.chooseSensor(DistanceMode.LIDAR);
+  }
+
+  public String chooseSensor(DistanceMode newMode){
     mode = newMode;
     switch(newMode){
-      case ONOFF:
-        writebuffer[0] = 2;
-        break;
       case ULTRASONIC:
         writebuffer[0] = 4;
         break;
@@ -103,6 +107,7 @@ public class SensorPetOverSPI extends Subsystem {
         writebuffer[0] = 0;
     }
     sensorpet.write(writebuffer, 1);
+    return mode.toString();
   }
 
   public void setMeasurementSystem(MeasurementSystem meas){

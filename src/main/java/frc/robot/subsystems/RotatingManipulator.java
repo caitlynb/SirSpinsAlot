@@ -7,7 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -15,6 +19,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RotatingManipulator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  private TalonSRX mc_wrist;
+  
+  public RotatingManipulator(){
+    mc_wrist = new TalonSRX(RobotMap.mc_Manipulator_CANID);
+    mc_wrist.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, RobotMap.kMCTimeoutMS);
+    mc_wrist.configContinuousCurrentLimit(20, RobotMap.kMCTimeoutMS);
+    mc_wrist.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
+    mc_wrist.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
+  }
 
   @Override
   public void initDefaultCommand() {

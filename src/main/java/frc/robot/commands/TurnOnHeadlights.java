@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import java.awt.Color;
 
 public class TurnOnHeadlights extends Command {
   public TurnOnHeadlights() {
@@ -20,6 +21,8 @@ public class TurnOnHeadlights extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // put code here to toggle on headlights
+    Robot.r_arduino.setcolor(Color.WHITE);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,7 +34,8 @@ public class TurnOnHeadlights extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    // force the code to never assume 'headlights' are finished
+    return false;
   }
 
   // Called once after isFinished returns true
@@ -43,5 +47,7 @@ public class TurnOnHeadlights extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    // put code here to toggle off headlights
+    Robot.r_arduino.setcolor(Color.black);
   }
 }
