@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.Constants;
 
 //import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -42,59 +43,59 @@ public class DriveBaseMecanum extends Subsystem {
     mc_rear_left = new WPI_TalonSRX(RobotMap.mc_RearLeft_CANID);
     mc_rear_right = new WPI_TalonSRX(RobotMap.mc_RearRight_CANID);
 
-    mc_front_left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
-    mc_front_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
+    mc_front_left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.kMCTimeoutMS);
+    mc_front_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.kMCTimeoutMS);
+    mc_rear_left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.kMCTimeoutMS);
+    mc_rear_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.kMCTimeoutMS);
 
-    mc_front_left.setSensorPhase(false);
-    mc_front_right.setSensorPhase(false);
-    mc_rear_left.setSensorPhase(false);
-    mc_rear_right.setSensorPhase(false);
+    mc_front_left.setSensorPhase(Constants.kDriveFrontLeftPhase);
+    mc_front_right.setSensorPhase(Constants.kDriveFrontRightPhase);
+    mc_rear_left.setSensorPhase(Constants.kDriveRearLeftPhase);
+    mc_rear_right.setSensorPhase(Constants.kDriveRearRightPhase);
     
-    mc_front_left.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
-    mc_front_right.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
+    mc_front_left.configContinuousCurrentLimit(40, Constants.kMCTimeoutMS);
+    mc_front_right.configContinuousCurrentLimit(40, Constants.kMCTimeoutMS);
+    mc_rear_left.configContinuousCurrentLimit(40, Constants.kMCTimeoutMS);
+    mc_rear_right.configContinuousCurrentLimit(40, Constants.kMCTimeoutMS);
 
-    mc_front_left.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
-    mc_front_left.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
-    mc_front_right.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
-    mc_front_right.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
+    mc_front_left.configPeakCurrentDuration(200, Constants.kMCTimeoutMS);
+    mc_front_left.configPeakCurrentLimit(60, Constants.kMCTimeoutMS);
+    mc_front_right.configPeakCurrentDuration(200, Constants.kMCTimeoutMS);
+    mc_front_right.configPeakCurrentLimit(60, Constants.kMCTimeoutMS);
+    mc_rear_left.configPeakCurrentDuration(200, Constants.kMCTimeoutMS);
+    mc_rear_left.configPeakCurrentLimit(60, Constants.kMCTimeoutMS);
+    mc_rear_right.configPeakCurrentDuration(200, Constants.kMCTimeoutMS);
+    mc_rear_right.configPeakCurrentLimit(60, Constants.kMCTimeoutMS);
 
     mc_front_left.enableCurrentLimit(true);
     mc_front_right.enableCurrentLimit(true);
     mc_rear_left.enableCurrentLimit(true);
     mc_rear_right.enableCurrentLimit(true);
 
-    mc_front_left.setInverted(false);
-    mc_front_right.setInverted(false);
-    mc_rear_left.setInverted(false);
-    mc_rear_right.setInverted(false);
+    mc_front_left.setInverted(Constants.kDriveFrontLeftInverted);
+    mc_front_right.setInverted(Constants.kDriveFrontRightInverted);
+    mc_rear_left.setInverted(Constants.kDriveRearLeftInverted);
+    mc_rear_right.setInverted(Constants.kDriveRearRightInverted);
 
-    mc_front_left.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
-    mc_front_right.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
+    mc_front_left.configNominalOutputForward(0, Constants.kMCTimeoutMS);
+    mc_front_right.configNominalOutputForward(0, Constants.kMCTimeoutMS);
+    mc_rear_left.configNominalOutputForward(0, Constants.kMCTimeoutMS);
+    mc_rear_right.configNominalOutputForward(0, Constants.kMCTimeoutMS);
 
-    mc_front_left.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
-    mc_front_right.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
+    mc_front_left.configNominalOutputReverse(0, Constants.kMCTimeoutMS);
+    mc_front_right.configNominalOutputReverse(0, Constants.kMCTimeoutMS);
+    mc_rear_left.configNominalOutputReverse(0, Constants.kMCTimeoutMS);
+    mc_rear_right.configNominalOutputReverse(0, Constants.kMCTimeoutMS);
 
-    mc_front_left.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
-    mc_front_right.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
+    mc_front_left.configPeakOutputForward(1, Constants.kMCTimeoutMS);
+    mc_front_right.configPeakOutputForward(1, Constants.kMCTimeoutMS);
+    mc_rear_left.configPeakOutputForward(1, Constants.kMCTimeoutMS);
+    mc_rear_right.configPeakOutputForward(1, Constants.kMCTimeoutMS);
 
-    mc_front_left.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
-    mc_front_right.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
-    mc_rear_left.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
-    mc_rear_right.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
+    mc_front_left.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
+    mc_front_right.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
+    mc_rear_left.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
+    mc_rear_right.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
 
 
 

@@ -28,6 +28,7 @@ public class SetManipAngle extends Command {
   protected void execute() {
     double angle = SmartDashboard.getNumber("Set Manip Angle", 180);
     Robot.r_wrist.setAngle(angle);
+    SmartDashboard.putNumber("Manip Error", Robot.r_wrist.getPosError());
   }
 
   // Make this return true when this Command no longer needs to run execute()

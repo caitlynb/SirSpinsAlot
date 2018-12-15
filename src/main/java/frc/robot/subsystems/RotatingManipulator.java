@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.Constants;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -28,26 +29,43 @@ public class RotatingManipulator extends Subsystem {
   public RotatingManipulator(){
     mc_wrist = new TalonSRX(RobotMap.mc_Manipulator_CANID);
 
-    mc_wrist.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, RobotMap.kMCTimeoutMS);
-    mc_wrist.configContinuousCurrentLimit(20, RobotMap.kMCTimeoutMS);
-    mc_wrist.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
-    mc_wrist.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
+    mc_wrist.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.kMCTimeoutMS);
+    mc_wrist.configContinuousCurrentLimit(20, Constants.kMCTimeoutMS);
+    mc_wrist.configPeakCurrentDuration(200, Constants.kMCTimeoutMS);
+    mc_wrist.configPeakCurrentLimit(60, Constants.kMCTimeoutMS);
+    mc_wrist.enableCurrentLimit(true);
 
-    mc_wrist.setSensorPhase(true);
+    mc_wrist.setSensorPhase(Constants.kWristSensorPhase);
     mc_wrist.selectProfileSlot(0, 0);
-    mc_wrist.configNominalOutputForward(0, 10);
-    mc_wrist.configNominalOutputReverse(0, 10);
-    mc_wrist.configPeakOutputForward(1, 10);
-    mc_wrist.configPeakOutputReverse(-1, 10);
-    mc_wrist.config_kF(0, 0.4, 10);
-    mc_wrist.config_kP(0, 0.3, 10);
-    mc_wrist.config_kI(0, 0, 10);
-    mc_wrist.config_kD(0, 0, 10);
-  	mc_wrist.setNeutralMode(NeutralMode.Coast);
+    mc_wrist.configNominalOutputForward(0, Constants.kMCTimeoutMS);
+    mc_wrist.configNominalOutputReverse(0, Constants.kMCTimeoutMS);
+    mc_wrist.configPeakOutputForward(1, Constants.kMCTimeoutMS);
+    mc_wrist.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
+    mc_wrist.config_kF(0, 0.0, Constants.kMCTimeoutMS);
+    mc_wrist.config_kP(0, 0.2, Constants.kMCTimeoutMS);
+    mc_wrist.config_kI(0, 0, Constants.kMCTimeoutMS);
+    mc_wrist.config_kD(0, 0, Constants.kMCTimeoutMS);
+  	mc_wrist.setNeutralMode(NeutralMode.Brake);
     mc_wrist.setInverted(false);
     
-    mc_wrist.configMotionAcceleration(3000, RobotMap.kMCTimeoutMS);
-    mc_wrist.configMotionCruiseVelocity(10000, RobotMap.kMCTimeoutMS);
+    mc_wrist.configAllowableClosedloopError(0, 10, Constants.kMCTimeoutMS);
+    mc_wrist.configMotionAcceleration(3000, Constants.kMCTimeoutMS);
+    mc_wrist.configMotionCruiseVelocity(10000, Constants.kMCTimeoutMS);
+
+    // stealing demo code from
+    // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/org/usfirst/frc/team217/robot/Robot.java
+    int abspos = mc_wrist.getSensorCollection().getPulseWidthPosition();
+    // mask out overflow bits
+    abspos &= 0xFFF;
+    if (Constants.kWristSensorPhase){
+      abspos *= -1;
+    }
+    if (Constants.kWristInverted){
+      abspos *= -1;
+    }
+    // set quad to match absolute
+    mc_wrist.setSelectedSensorPosition(abspos, 0, Constants.kMCTimeoutMS);
+
 
   }
 
@@ -76,5 +94,9 @@ public class RotatingManipulator extends Subsystem {
   
   public void debugStopAll(){
     mc_wrist.set(ControlMode.PercentOutput, 0);
+  }
+
+  public int getPosError(){
+    return mc_wrist.getClosedLoopError(0);
   }
 }
