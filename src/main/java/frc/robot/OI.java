@@ -46,7 +46,7 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  Joystick driverJoystick = new Joystick(1);
+  Joystick driverJoystick = new Joystick(0);
 
   // CAB:  FIXME WITH REAL BUTTON ASSIGMENTS
   Button alignRobotToSideWallButton = new JoystickButton(driverJoystick, 1);

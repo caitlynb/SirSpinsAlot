@@ -26,11 +26,11 @@ public class RobotMap {
 
   // CAB : FIXME : TODO :
   // Redo the numbers based on what they really are when you get home
-  public static int mc_FrontLeft_CANID = 1;
-  public static int mc_FrontRight_CANID = 2;
-  public static int mc_RearLeft_CANID = 3;
-  public static int mc_RearRight_CANID = 4;
-  public static int mc_Manipulator_CANID = 5;
+  public static int mc_FrontLeft_CANID = 21;
+  public static int mc_FrontRight_CANID = 20;
+  public static int mc_RearLeft_CANID = 22;
+  public static int mc_RearRight_CANID = 23;
+  public static int mc_Manipulator_CANID = 10;
 
   // sp = Sensor Pet (the arduino with sensors attached)
   public static int sp_FrontLeft_SPIID = 1;
