@@ -78,6 +78,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     r_arduino.forceUpdate();
+    SmartDashboard.putNumber("Current Reading Manipulator Position", r_wrist.getAngle());
   }
 
   /**

@@ -14,7 +14,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -57,7 +56,7 @@ public class RotatingManipulator extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public int returnCurrentAngle(){
+  public int getAngle(){
     // returns the current angle of the joint as read by an encoder.
     int angle = mc_wrist.getSelectedSensorPosition(0);
     return angle;
