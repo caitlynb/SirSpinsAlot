@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   public static ArduinoLEDs r_arduino;
   public static DriveBaseMecanum r_drivebase;
 
-  public static RotatingManipulator r_mc_wrist;
+  public static RotatingManipulator r_wrist;
 
   public static SensorPetOverSPI r_frontleftsensor;
   public static SensorPetOverSPI r_frontrightsensor;
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
 
     r_drivebase = new DriveBaseMecanum();
 
-    r_mc_wrist = new RotatingManipulator();
+    r_wrist = new RotatingManipulator();
 
     r_frontleftsensor = new SensorPetOverSPI(RobotMap.sp_FrontLeft_SPIID);
     r_frontrightsensor = new SensorPetOverSPI(RobotMap.sp_FrontRight_SPIID);
@@ -138,7 +138,7 @@ public class Robot extends TimedRobot {
       r_autonomousCommand.cancel();
     }
 
-    
+
   }
 
   /**
