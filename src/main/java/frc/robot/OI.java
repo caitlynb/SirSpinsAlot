@@ -49,12 +49,13 @@ public class OI {
   Joystick driverJoystick = new Joystick(0);
 
   // CAB:  FIXME WITH REAL BUTTON ASSIGMENTS
-  Button alignRobotToSideWallButton = new JoystickButton(driverJoystick, 1);
-  Button alignRobotToFrontWallButton = new JoystickButton(driverJoystick, 2);
-  Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 3);
-  Button turnAirlockGearButton = new JoystickButton(driverJoystick, 4);
-  Button turnAirlockBarButton = new JoystickButton(driverJoystick, 5);
-  Button toggleHeadlights = new JoystickButton(driverJoystick, 6);
+  Button alignRobotToSideWallButton = new JoystickButton(driverJoystick, 3);
+  Button alignRobotToFrontWallButton = new JoystickButton(driverJoystick, 4);
+  Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 10);
+  Button turnAirlockGearButton = new JoystickButton(driverJoystick, 1);
+  Button turnAirlockBarButton = new JoystickButton(driverJoystick, 2);
+  Button toggleHeadlights = new JoystickButton(driverJoystick, 13);
+  Button controlManipulatorFromDashboard = new JoystickButton(driverJoystick, 9);
 
   // Select one of the below and uncomment depending on what controller is in use.
 
@@ -73,6 +74,7 @@ public class OI {
   // Set up some commands
   public OI(){
     toggleHeadlights.toggleWhenPressed(new TurnOnHeadlights());
+    controlManipulatorFromDashboard.whileHeld(new SetManipAngle());
 
     // alignRobotToSideWallButton.whileHeld(new debugDriveBaseForward());
     // alignRobotToFrontWallButton.whileHeld(new debugWristForward());
