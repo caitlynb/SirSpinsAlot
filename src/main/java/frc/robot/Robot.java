@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    r_arduino.forceUpdate();
   }
 
   /**
@@ -86,6 +87,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    r_arduino.setModeDisabled();
+    r_arduino.forceUpdate();
   }
 
   @Override
@@ -115,10 +118,15 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
+    r_arduino.setModeAutonomous();
+    r_arduino.forceUpdate();
+    
     // schedule the autonomous command (example)
     if (r_autonomousCommand != null) {
       r_autonomousCommand.start();
     }
+
+
   }
 
   /**
@@ -126,6 +134,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    //r_arduino.forceUpdate();
     Scheduler.getInstance().run();
   }
 
@@ -139,6 +148,8 @@ public class Robot extends TimedRobot {
       r_autonomousCommand.cancel();
     }
 
+    r_arduino.setModeTeleop();
+    r_arduino.forceUpdate();
 
   }
 
@@ -147,8 +158,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    
     Scheduler.getInstance().run();
   }
+
+  /**
+	 * This function is called on Test mode init
+	 */
+	@Override
+	public void testInit(){
+    r_arduino.setModeTest();
+    r_arduino.forceUpdate();
+  }
+
 
   /**
    * This function is called periodically during test mode.
@@ -156,4 +178,6 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+
 }

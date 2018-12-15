@@ -24,7 +24,6 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  // CAB : FIXME : TODO :
   // Redo the numbers based on what they really are when you get home
   public static int mc_FrontLeft_CANID = 21;
   public static int mc_FrontRight_CANID = 20;

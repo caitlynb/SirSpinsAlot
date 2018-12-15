@@ -24,6 +24,15 @@ public class ArduinoLEDs extends Subsystem {
   private I2C arduino;
   private byte[] transmitbuffer;
 
+  public enum ControlMode {
+    Disabled,
+    Autonomous,
+    Teleop,
+    Test
+  }
+
+  private ControlMode mode;
+
   public ArduinoLEDs(){
     this(8);
   }
@@ -37,7 +46,7 @@ public class ArduinoLEDs extends Subsystem {
     arduino = new I2C(Port.kOnboard, i2c_bus_address);
 
     transmitbuffer = new byte[20];
-
+    mode = ControlMode.Disabled;
   }
 
   @Override
@@ -47,11 +56,33 @@ public class ArduinoLEDs extends Subsystem {
   }
 
   public void setcolor(Color newcolor){
-    transmitbuffer[0] = 0;
-    transmitbuffer[1] = 0;
     transmitbuffer[2] = (byte)newcolor.getRed();
     transmitbuffer[3] = (byte)newcolor.getGreen();
     transmitbuffer[4] = (byte)newcolor.getBlue();
+    arduino.writeBulk(transmitbuffer, 5);
+  }
+
+  public void setModeDisabled(){
+    mode = ControlMode.Disabled;
+    transmitbuffer[0] = 0x01;
+  }
+
+  public void setModeAutonomous(){
+    mode = ControlMode.Autonomous;
+    transmitbuffer[0] = 0x02;
+  }
+
+  public void setModeTest(){
+    mode = ControlMode.Test;
+    transmitbuffer[0] = 0x08;
+  }
+
+  public void setModeTeleop(){
+    mode = ControlMode.Teleop;
+    transmitbuffer[0] = 0x04;
+  }
+
+  public void forceUpdate(){
     arduino.writeBulk(transmitbuffer, 5);
   }
 }
