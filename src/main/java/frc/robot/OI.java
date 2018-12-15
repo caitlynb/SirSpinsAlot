@@ -74,7 +74,7 @@ public class OI {
   public OI(){
     toggleHeadlights.toggleWhenPressed(new TurnOnHeadlights());
 
-    alignRobotToSideWallButton.whenPressed(new debugDriveBaseForward());
-    alignRobotToFrontWallButton.whenPressed(new debugWristForward());
+    alignRobotToSideWallButton.whileHeld(new debugDriveBaseForward());
+    alignRobotToFrontWallButton.whileHeld(new debugWristForward());
   }
 }
