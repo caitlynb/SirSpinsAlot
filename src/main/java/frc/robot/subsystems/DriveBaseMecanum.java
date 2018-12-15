@@ -100,7 +100,7 @@ public class DriveBaseMecanum extends Subsystem {
 
     // MAJOR CRUTCH
     // TODO:  Put in some proper inverse kinematics driven by encoders!
-    drivebase = new MecanumDrive(mc_front_left, mc_rear_left, mc_front_right, mc_rear_right);
+    //drivebase = new MecanumDrive(mc_front_left, mc_rear_left, mc_front_right, mc_rear_right);
 
   }
 

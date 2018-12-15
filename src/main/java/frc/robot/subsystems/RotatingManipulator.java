@@ -34,7 +34,7 @@ public class RotatingManipulator extends Subsystem {
     mc_wrist.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
     mc_wrist.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
 
-    mc_wrist.setSensorPhase(false);
+    mc_wrist.setSensorPhase(true);
     mc_wrist.configNominalOutputForward(0, 10);
     mc_wrist.configNominalOutputReverse(0, 10);
     mc_wrist.configPeakOutputForward(1, 10);
