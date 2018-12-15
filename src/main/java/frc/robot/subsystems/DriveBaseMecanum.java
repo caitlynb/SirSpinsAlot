@@ -46,6 +46,11 @@ public class DriveBaseMecanum extends Subsystem {
     mc_front_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
     mc_rear_left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
     mc_rear_right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kMCTimeoutMS);
+
+    mc_front_left.setSensorPhase(false);
+    mc_front_right.setSensorPhase(false);
+    mc_rear_left.setSensorPhase(false);
+    mc_rear_right.setSensorPhase(false);
     
     mc_front_left.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
     mc_front_right.configContinuousCurrentLimit(40, RobotMap.kMCTimeoutMS);
@@ -66,6 +71,33 @@ public class DriveBaseMecanum extends Subsystem {
     mc_rear_left.enableCurrentLimit(true);
     mc_rear_right.enableCurrentLimit(true);
 
+    mc_front_left.setInverted(false);
+    mc_front_right.setInverted(false);
+    mc_rear_left.setInverted(false);
+    mc_rear_right.setInverted(false);
+
+    mc_front_left.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
+    mc_front_right.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
+    mc_rear_left.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
+    mc_rear_right.configNominalOutputForward(0, RobotMap.kMCTimeoutMS);
+
+    mc_front_left.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
+    mc_front_right.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
+    mc_rear_left.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
+    mc_rear_right.configNominalOutputReverse(0, RobotMap.kMCTimeoutMS);
+
+    mc_front_left.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
+    mc_front_right.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
+    mc_rear_left.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
+    mc_rear_right.configPeakOutputForward(1, RobotMap.kMCTimeoutMS);
+
+    mc_front_left.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
+    mc_front_right.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
+    mc_rear_left.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
+    mc_rear_right.configPeakOutputReverse(-1, RobotMap.kMCTimeoutMS);
+
+
+
     // MAJOR CRUTCH
     // TODO:  Put in some proper inverse kinematics driven by encoders!
     drivebase = new MecanumDrive(mc_front_left, mc_rear_left, mc_front_right, mc_rear_right);
@@ -84,5 +116,19 @@ public class DriveBaseMecanum extends Subsystem {
 
   public void driveCartesian(double xSpeed, double ySpeed, double zRotation){
     drivebase.driveCartesian(ySpeed, xSpeed, zRotation);
+  }
+
+  public void debugDriveAllPositive(){
+    mc_front_left.set(0.25);
+    mc_front_right.set(0.25);
+    mc_rear_left.set(0.25);
+    mc_rear_right.set(0.25);
+  }
+
+  public void debugStopAll(){
+    mc_front_left.set(0);
+    mc_front_right.set(0);
+    mc_rear_left.set(0);
+    mc_rear_right.set(0);
   }
 }

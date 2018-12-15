@@ -9,8 +9,12 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -24,10 +28,27 @@ public class RotatingManipulator extends Subsystem {
   
   public RotatingManipulator(){
     mc_wrist = new TalonSRX(RobotMap.mc_Manipulator_CANID);
+
     mc_wrist.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, RobotMap.kMCTimeoutMS);
     mc_wrist.configContinuousCurrentLimit(20, RobotMap.kMCTimeoutMS);
     mc_wrist.configPeakCurrentDuration(200, RobotMap.kMCTimeoutMS);
     mc_wrist.configPeakCurrentLimit(60, RobotMap.kMCTimeoutMS);
+
+    mc_wrist.setSensorPhase(false);
+    mc_wrist.configNominalOutputForward(0, 10);
+    mc_wrist.configNominalOutputReverse(0, 10);
+    mc_wrist.configPeakOutputForward(1, 10);
+    mc_wrist.configPeakOutputReverse(-1, 10);
+    mc_wrist.config_kF(0, 0.4, 10);
+    mc_wrist.config_kP(0, 0.3, 10);
+    mc_wrist.config_kI(0, 0, 10);
+    mc_wrist.config_kD(0, 0, 10);
+  	mc_wrist.setNeutralMode(NeutralMode.Coast);
+    mc_wrist.setInverted(false);
+    
+    mc_wrist.configMotionAcceleration(3000, RobotMap.kMCTimeoutMS);
+    mc_wrist.configMotionCruiseVelocity(10000, RobotMap.kMCTimeoutMS);
+
   }
 
   @Override
@@ -36,10 +57,22 @@ public class RotatingManipulator extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public double returnCurrentAngle(){
-      // returns the current angle of the joint as read by an encoder.
-      return 0.0;
+  public int returnCurrentAngle(){
+    // returns the current angle of the joint as read by an encoder.
+    int angle = mc_wrist.getSelectedSensorPosition(0);
+    return angle;
   }
 
+  public void setAngle(double degrees){
+    // sets the current angle
+
+  }
+
+  public void debugDrivePositive(){
+    mc_wrist.set(ControlMode.PercentOutput, 0.25);
+  }
   
+  public void debugStopAll(){
+    mc_wrist.set(ControlMode.PercentOutput, 0);
+  }
 }

@@ -25,14 +25,14 @@ public class ArduinoLEDs extends Subsystem {
   private byte[] transmitbuffer;
 
   public ArduinoLEDs(){
-    this(7);
+    this(8);
   }
 
   public ArduinoLEDs(int i2caddress){
     if(i2caddress >= 1 && i2caddress <= 255)
       this.i2c_bus_address = i2caddress;
     else
-      this.i2c_bus_address = 7;
+      this.i2c_bus_address = 8;
 
     arduino = new I2C(Port.kOnboard, i2c_bus_address);
 
