@@ -48,23 +48,11 @@ public class RotatingManipulator extends Subsystem {
   	mc_wrist.setNeutralMode(NeutralMode.Brake);
     mc_wrist.setInverted(false);
     
-    mc_wrist.configAllowableClosedloopError(0, 10, Constants.kMCTimeoutMS);
+    mc_wrist.configAllowableClosedloopError(0, 5, Constants.kMCTimeoutMS);
     mc_wrist.configMotionAcceleration(3000, Constants.kMCTimeoutMS);
-    mc_wrist.configMotionCruiseVelocity(10000, Constants.kMCTimeoutMS);
+    mc_wrist.configMotionCruiseVelocity(6000, Constants.kMCTimeoutMS);
 
-    // stealing demo code from
-    // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/org/usfirst/frc/team217/robot/Robot.java
-    int abspos = mc_wrist.getSensorCollection().getPulseWidthPosition();
-    // mask out overflow bits
-    abspos &= 0xFFF;
-    if (Constants.kWristSensorPhase){
-      abspos *= -1;
-    }
-    if (Constants.kWristInverted){
-      abspos *= -1;
-    }
-    // set quad to match absolute
-    mc_wrist.setSelectedSensorPosition(abspos, 0, Constants.kMCTimeoutMS);
+    zeroAngle();
 
 
   }
@@ -84,8 +72,24 @@ public class RotatingManipulator extends Subsystem {
   public void setAngle(double degrees){
     // sets the current angle
     if(degrees>=0 && degrees <= 360){
-      mc_wrist.set(ControlMode.Position, degrees * 4096);
+      mc_wrist.set(ControlMode.MotionMagic, (int)(degrees / 360 * 4096));
     }
+  }
+
+  public void zeroAngle(){
+    // stealing demo code from
+    // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/org/usfirst/frc/team217/robot/Robot.java
+    int abspos = mc_wrist.getSensorCollection().getPulseWidthPosition();
+    // mask out overflow bits
+    abspos &= 0xFFF;
+    if (Constants.kWristSensorPhase){
+      abspos *= -1;
+    }
+    if (Constants.kWristInverted){
+      abspos *= -1;
+    }
+    // set quad to match absolute
+    mc_wrist.setSelectedSensorPosition(abspos, 0, Constants.kMCTimeoutMS);
   }
 
   public void debugDrivePositive(){

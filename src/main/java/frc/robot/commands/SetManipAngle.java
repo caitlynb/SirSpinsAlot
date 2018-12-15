@@ -21,6 +21,7 @@ public class SetManipAngle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.r_wrist.zeroAngle();
   }
 
   // Called repeatedly when this Command is scheduled to run
