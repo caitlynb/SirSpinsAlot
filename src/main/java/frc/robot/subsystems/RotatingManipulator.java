@@ -58,13 +58,15 @@ public class RotatingManipulator extends Subsystem {
 
   public int getAngle(){
     // returns the current angle of the joint as read by an encoder.
-    int angle = mc_wrist.getSelectedSensorPosition(0);
+    int angle = mc_wrist.getSensorCollection().getPulseWidthPosition();
     return angle;
   }
 
   public void setAngle(double degrees){
     // sets the current angle
-
+    if(degrees>=0 && degrees <= 360){
+      mc_wrist.set(ControlMode.Position, degrees * 4096);
+    }
   }
 
   public void debugDrivePositive(){

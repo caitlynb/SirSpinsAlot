@@ -152,6 +152,7 @@ public class Robot extends TimedRobot {
     r_arduino.setModeTeleop();
     r_arduino.forceUpdate();
 
+    SmartDashboard.putNumber("Set Manip Angle", 180);
   }
 
   /**
@@ -161,6 +162,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     
     Scheduler.getInstance().run();
+
+    
   }
 
   /**
