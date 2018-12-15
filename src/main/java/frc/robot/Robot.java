@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    r_oi = new OI();
+ 
     // m_chooser.addDefault("Default Auto", new ExampleCommand());
     // m_chooser.addObject("My Auto", new MyAutoCommand());
 
@@ -63,7 +63,8 @@ public class Robot extends TimedRobot {
     r_sideforwardsensor = new SensorPetOverSPI(RobotMap.sp_SideFront_SPIID);
     r_siderearsensor = new SensorPetOverSPI(RobotMap.sp_SideRear_SPIID);
 
-    
+    // learned the hard way, initialize OI last....
+    r_oi = new OI();
   }
 
   /**
