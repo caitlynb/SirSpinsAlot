@@ -32,10 +32,10 @@ public class RobotMap {
   public static int mc_Manipulator_CANID = 10;
 
   // sp = Sensor Pet (the arduino with sensors attached)
-  public static int sp_FrontLeft_SPIID = 1;
-  public static int sp_FrontRight_SPIID = 2;
-  public static int sp_SideFront_SPIID = 3;
-  public static int sp_SideRear_SPIID = 4;
+  public static int sp_FrontLeft_SPIID = 0;
+  public static int sp_FrontRight_SPIID = 1;
+  public static int sp_SideFront_SPIID = 2;
+  public static int sp_SideRear_SPIID = 3;
 
   // location of the Arduino for LEDs
   public static int arduino_I2CADDR = 8;

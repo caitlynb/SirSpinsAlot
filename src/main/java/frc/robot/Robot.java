@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.nio.ByteBuffer;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -79,6 +81,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     r_arduino.forceUpdate();
     SmartDashboard.putNumber("Current Reading Manipulator Position", r_wrist.getAngle());
+
+    SmartDashboard.putRaw("Raw Sensor Pet", r_frontleftsensor.debugmeasure());
   }
 
   /**

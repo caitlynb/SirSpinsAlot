@@ -5,6 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+/* Documenation for wiring for sensor pets:
+ * 
+ * MOSI:  White
+ * MISO:  Yellow
+ * SCK:   Orange
+ * CS0:   Grey
+ * CS1:   Green
+ * CS2:   Blue
+ * CS3:   Purple
+ **/
+
 package frc.robot.subsystems;
 
 import java.nio.ByteBuffer;
@@ -69,14 +81,16 @@ public class SensorPetOverSPI extends Subsystem {
         break;
     }
 
-    sensorpet.setClockRate(4000000); // 4 MHz
+    sensorpet.setClockRate(2000000); // 2 MHz
     sensorpet.setClockActiveHigh();
     sensorpet.setChipSelectActiveLow();
+    sensorpet.setSampleDataOnRising();
     sensorpet.setMSBFirst();
 
     writebuffer = new byte[10];
     receiverbuffer = new byte[10];
 
+    units = MeasurementSystem.MM;
 
   }
 
@@ -86,6 +100,7 @@ public class SensorPetOverSPI extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  /*
   public void configUltrasonic(){
     this.chooseSensor(DistanceMode.ULTRASONIC);
   }
@@ -109,13 +124,14 @@ public class SensorPetOverSPI extends Subsystem {
     sensorpet.write(writebuffer, 1);
     return mode.toString();
   }
+*/
 
   public void setMeasurementSystem(MeasurementSystem meas){
     units = meas;
   }
 
   public double measure(){
-    sensorpet.read(true, receiverbuffer, 4);  // returns millimeters as an int
+    sensorpet.read(true, receiverbuffer, 6);  // returns millimeters as an int
     double mm = ByteBuffer.wrap(receiverbuffer).getInt();
     switch(units){
       case MM:
@@ -135,6 +151,11 @@ public class SensorPetOverSPI extends Subsystem {
         break;
     }
     return lastdistanceread;
+  }
+
+  public byte[] debugmeasure(){
+    sensorpet.read(true, receiverbuffer, 6);
+    return receiverbuffer;
   }
 
   public double lastmeasurement(){
