@@ -56,9 +56,9 @@ public class ArduinoLEDs extends Subsystem {
   }
 
   public void setcolor(Color newcolor){
-    transmitbuffer[2] = (byte)newcolor.getRed();
-    transmitbuffer[3] = (byte)newcolor.getGreen();
-    transmitbuffer[4] = (byte)newcolor.getBlue();
+    transmitbuffer[3] = (byte)newcolor.getRed();
+    transmitbuffer[4] = (byte)newcolor.getGreen();
+    transmitbuffer[5] = (byte)newcolor.getBlue();
     arduino.writeBulk(transmitbuffer, 5);
   }
 
