@@ -18,4 +18,6 @@ public class Constants {
 
   public static final boolean kDriveRearRightPhase = false;
   public static final boolean kDriveRearRightInverted = false;
+
+  public static final int kArduinoLEDBytesToSend = 6;
 }

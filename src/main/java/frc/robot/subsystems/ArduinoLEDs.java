@@ -12,6 +12,7 @@ import java.awt.Color;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -59,7 +60,7 @@ public class ArduinoLEDs extends Subsystem {
     transmitbuffer[3] = (byte)newcolor.getRed();
     transmitbuffer[4] = (byte)newcolor.getGreen();
     transmitbuffer[5] = (byte)newcolor.getBlue();
-    arduino.writeBulk(transmitbuffer, 5);
+    arduino.writeBulk(transmitbuffer, Constants.kArduinoLEDBytesToSend);
   }
 
   public void setModeDisabled(){
@@ -83,6 +84,6 @@ public class ArduinoLEDs extends Subsystem {
   }
 
   public void forceUpdate(){
-    arduino.writeBulk(transmitbuffer, 5);
+    arduino.writeBulk(transmitbuffer, Constants.kArduinoLEDBytesToSend);
   }
 }
