@@ -131,7 +131,7 @@ public class SensorPetOverSPI extends Subsystem {
   }
 
   public double measure(){
-    sensorpet.read(true, receiverbuffer, 6);  // returns millimeters as an int
+    sensorpet.transaction(writebuffer, receiverbuffer, 6);  // returns millimeters as an int
     double mm = ByteBuffer.wrap(receiverbuffer).getInt();
     switch(units){
       case MM:
