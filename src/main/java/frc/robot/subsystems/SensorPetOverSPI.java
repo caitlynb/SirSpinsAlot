@@ -81,7 +81,7 @@ public class SensorPetOverSPI extends Subsystem {
         break;
     }
 
-    sensorpet.setClockRate(2000000); // 2 MHz
+    //sensorpet.setClockRate(800000); // 2 MHz
     sensorpet.setClockActiveHigh();
     sensorpet.setChipSelectActiveLow();
     sensorpet.setSampleDataOnRising();
@@ -154,7 +154,7 @@ public class SensorPetOverSPI extends Subsystem {
   }
 
   public byte[] debugmeasure(){
-    sensorpet.read(true, receiverbuffer, 6);
+    sensorpet.transaction(writebuffer, receiverbuffer, 6);
     return receiverbuffer;
   }
 

@@ -29,7 +29,7 @@ public class DefaultDriveCommand extends Command {
     double x = OI.driverJoystick.getRawAxis(OI.driverJoystickXAxis);
     double y = OI.driverJoystick.getRawAxis(OI.driverJoystickYAxis);
     double r = OI.driverJoystick.getRawAxis(OI.driverJoystickTwistAxis);
-    Robot.r_drivebase.driveCartesian(-x, -y, -r);
+    Robot.r_drivebase.driveCartesian(x/2, y/2, r/2);
   }
 
   // Make this return true when this Command no longer needs to run execute()

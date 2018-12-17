@@ -29,7 +29,7 @@ public class DriveOrientedToFront extends Command {
     double x = OI.driverJoystick.getRawAxis(OI.driverJoystickXAxis);
     double y = OI.driverJoystick.getRawAxis(OI.driverJoystickYAxis);
     double r = OI.driverJoystick.getRawAxis(OI.driverJoystickTwistAxis);
-    Robot.r_drivebase.driveCartesian(-x, -y, -r);
+    Robot.r_drivebase.driveCartesian(x/4, y/4, r/4);
   }
 
   // Make this return true when this Command no longer needs to run execute()

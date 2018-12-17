@@ -29,7 +29,7 @@ public class DriveOrientedToSideWall extends Command {
     double x = OI.driverJoystick.getRawAxis(OI.driverJoystickXAxis);
     double y = OI.driverJoystick.getRawAxis(OI.driverJoystickYAxis);
     double r = OI.driverJoystick.getRawAxis(OI.driverJoystickTwistAxis);
-    Robot.r_drivebase.driveCartesian(-y, -x, -r);
+    Robot.r_drivebase.driveCartesian(y/4, x/4, r/4);
   }
 
   // Make this return true when this Command no longer needs to run execute()
