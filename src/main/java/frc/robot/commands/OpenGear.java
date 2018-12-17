@@ -27,7 +27,7 @@ public class OpenGear extends Command {
   @Override
   protected void initialize() {
     setposition = Robot.r_wrist.zeroAngle();
-    int delta = (int)SmartDashboard.getNumber("Gear Turn Ticks", -1650);
+    int delta = (int)SmartDashboard.getNumber("Gear Turn Ticks", -1550);
     targetposition = setposition + delta;
     Robot.r_wrist.driveEncPos(targetposition);
   }

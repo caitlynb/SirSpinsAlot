@@ -42,8 +42,8 @@ public class RotatingManipulator extends Subsystem {
     mc_wrist.configPeakOutputForward(1, Constants.kMCTimeoutMS);
     mc_wrist.configPeakOutputReverse(-1, Constants.kMCTimeoutMS);
     mc_wrist.config_kF(0, 0.0, Constants.kMCTimeoutMS);
-    mc_wrist.config_kP(0, 0.2, Constants.kMCTimeoutMS);
-    mc_wrist.config_kI(0, 0, Constants.kMCTimeoutMS);
+    mc_wrist.config_kP(0, 0.5, Constants.kMCTimeoutMS);
+    mc_wrist.config_kI(0, 0.0, Constants.kMCTimeoutMS);
     mc_wrist.config_kD(0, 0, Constants.kMCTimeoutMS);
   	mc_wrist.setNeutralMode(NeutralMode.Brake);
     mc_wrist.setInverted(false);

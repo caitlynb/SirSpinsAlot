@@ -33,14 +33,14 @@ public class SetManipAngle extends Command {
   protected void execute() {
     if (OI.driverJoystick.getRawButton(OI.driverJoystickClockwiseButton)){
       // turn the wrist clockwise
-      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristClockwiseAxis) + 1)/8 * 4096);
-      setposition += posdelta;
+      //int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristClockwiseAxis) + 1)/8 * 4096);
+      setposition += 10;
       Robot.r_wrist.driveEncPos(setposition);
 
     } else if (OI.driverJoystick.getRawButton(OI.driverJoystickCounterClockwiseButton)){
       // turn the wrist counter clockwise
       int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristCounterClockwiseAxis) + 1)/8 * 4096);
-      setposition -= posdelta;
+      setposition -= 10;
       Robot.r_wrist.driveEncPos(setposition);
     }
     SmartDashboard.putNumber("Manip Error", Robot.r_wrist.getPosError());
