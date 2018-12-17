@@ -8,15 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class SetManipAngle extends Command {
-
-  private int setposition;
-
-  public SetManipAngle() {
+public class OpenBar extends Command {
+  public OpenBar() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.r_wrist);
@@ -25,25 +21,11 @@ public class SetManipAngle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setposition = Robot.r_wrist.zeroAngle();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (OI.driverJoystick.getRawButton(OI.driverJoystickClockwiseButton)){
-      // turn the wrist clockwise
-      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristClockwiseAxis) + 1)/16 * 4096);
-      setposition += posdelta;
-      Robot.r_wrist.setEncPos(setposition);
-
-    } else if (OI.driverJoystick.getRawButton(OI.driverJoystickCounterClockwiseButton)){
-      // turn the wrist counter clockwise
-      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristCounterClockwiseAxis) + 1)/16 * 4096);
-      setposition -= posdelta;
-      Robot.r_wrist.setEncPos(setposition);
-    }
-    SmartDashboard.putNumber("Manip Error", Robot.r_wrist.getPosError());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -61,7 +43,5 @@ public class SetManipAngle extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.r_wrist.debugStopAll();
   }
-
 }

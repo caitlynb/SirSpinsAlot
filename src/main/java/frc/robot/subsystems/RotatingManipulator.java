@@ -76,7 +76,11 @@ public class RotatingManipulator extends Subsystem {
     }
   }
 
-  public void zeroAngle(){
+  public void setEncPos(int encpos){
+    mc_wrist.set(ControlMode.MotionMagic, encpos);
+  }
+
+  public int zeroAngle(){
     // stealing demo code from
     // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/org/usfirst/frc/team217/robot/Robot.java
     int abspos = mc_wrist.getSensorCollection().getPulseWidthPosition();
@@ -90,6 +94,7 @@ public class RotatingManipulator extends Subsystem {
     }
     // set quad to match absolute
     mc_wrist.setSelectedSensorPosition(abspos, 0, Constants.kMCTimeoutMS);
+    return abspos;
   }
 
   public void debugDrivePositive(){

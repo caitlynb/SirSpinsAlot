@@ -67,9 +67,13 @@ public class OI {
 
   // CAB:  FIXME WITH REAL NUMBERS
   // PS4 Gamepad
-  public static int driverJoystickXAxis = 1;  // In NED convention, this is front positive, back negative - Joystick is inverted from this
-  public static int driverJoystickYAxis = 0;  // in NED convention, this is right positive, left negative - Joystick is inverted from this
+  public static int driverJoystickXAxis = 1;  // In NED convention, this is front positive, back negative
+  public static int driverJoystickYAxis = 0;  // in NED convention, this is right positive, left negative
   public static int driverJoystickTwistAxis = 2;
+  public static int driverJoystickWristClockwiseAxis = 4;
+  public static int driverJoystickClockwiseButton = 8;
+  public static int driverJoystickWristCounterClockwiseAxis = 3;
+  public static int driverJoystickCounterClockwiseButton = 7;
 
   // Set up some commands
   public OI(){
