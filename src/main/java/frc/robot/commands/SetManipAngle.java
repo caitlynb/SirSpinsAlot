@@ -33,13 +33,13 @@ public class SetManipAngle extends Command {
   protected void execute() {
     if (OI.driverJoystick.getRawButton(OI.driverJoystickClockwiseButton)){
       // turn the wrist clockwise
-      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristClockwiseAxis) + 1)/16 * 4096);
+      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristClockwiseAxis) + 1)/24 * 4096);
       setposition += posdelta;
       Robot.r_wrist.driveEncPos(setposition);
 
     } else if (OI.driverJoystick.getRawButton(OI.driverJoystickCounterClockwiseButton)){
       // turn the wrist counter clockwise
-      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristCounterClockwiseAxis) + 1)/16 * 4096);
+      int posdelta = (int)((OI.driverJoystick.getRawAxis(OI.driverJoystickWristCounterClockwiseAxis) + 1)/24 * 4096);
       setposition -= posdelta;
       Robot.r_wrist.driveEncPos(setposition);
     }

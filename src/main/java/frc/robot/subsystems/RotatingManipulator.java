@@ -49,7 +49,7 @@ public class RotatingManipulator extends Subsystem {
     mc_wrist.setInverted(false);
     
     mc_wrist.configAllowableClosedloopError(0, 5, Constants.kMCTimeoutMS);
-    mc_wrist.configMotionAcceleration(3000, Constants.kMCTimeoutMS);
+    mc_wrist.configMotionAcceleration(4000, Constants.kMCTimeoutMS);
     mc_wrist.configMotionCruiseVelocity(6000, Constants.kMCTimeoutMS);
 
     zeroAngle();
