@@ -67,6 +67,9 @@ public class Robot extends TimedRobot {
 
     // learned the hard way, initialize OI last....
     r_oi = new OI();
+
+    SmartDashboard.putNumber("Bar Turn Ticks", 2200);
+    SmartDashboard.putNumber("Gear Turn Ticks", -1650);
   }
 
   /**

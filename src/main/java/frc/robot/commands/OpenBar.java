@@ -27,7 +27,7 @@ public class OpenBar extends Command {
   @Override
   protected void initialize() {
     setposition = Robot.r_wrist.zeroAngle();
-    int delta = (int)SmartDashboard.getNumber("Bar Turn Ticks", 360/175*4096);
+    int delta = (int)SmartDashboard.getNumber("Bar Turn Ticks", 2200);
     targetposition = setposition + delta;
     Robot.r_wrist.driveEncPos(targetposition);
   }
