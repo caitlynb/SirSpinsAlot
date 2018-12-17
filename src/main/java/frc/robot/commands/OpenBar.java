@@ -8,10 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.Constants;
 
 public class OpenBar extends Command {
+
+  private int setposition;
+  private int targetposition;
+
   public OpenBar() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -21,6 +26,10 @@ public class OpenBar extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setposition = Robot.r_wrist.zeroAngle();
+    int delta = (int)SmartDashboard.getNumber("Bar Turn Ticks", 360/175*4096);
+    targetposition = setposition + delta;
+    Robot.r_wrist.driveEncPos(targetposition);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,7 +40,11 @@ public class OpenBar extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    int curpos = Robot.r_wrist.getAngle();
+    if (Math.abs(curpos - targetposition) < Constants.kAllowedAnglePosError){
+      return true;
+    } else 
+      return false;
   }
 
   // Called once after isFinished returns true

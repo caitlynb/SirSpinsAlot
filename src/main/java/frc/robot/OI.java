@@ -81,6 +81,8 @@ public class OI {
     controlManipulatorFromDashboard.whileHeld(new SetManipAngle());
     alignRobotToSideWallButton.whileHeld(new DriveOrientedToSideWall());
     alignRobotToFrontWallButton.whileHeld(new DriveOrientedToFront());
+    turnAirlockBarButton.whenPressed(new OpenBar());
+    turnAirlockGearButton.whenPressed(new OpenGear());
     // alignRobotToSideWallButton.whileHeld(new debugDriveBaseForward());
     // alignRobotToFrontWallButton.whileHeld(new debugWristForward());
   }

@@ -76,7 +76,7 @@ public class RotatingManipulator extends Subsystem {
     }
   }
 
-  public void setEncPos(int encpos){
+  public void driveEncPos(int encpos){
     mc_wrist.set(ControlMode.MotionMagic, encpos);
   }
 

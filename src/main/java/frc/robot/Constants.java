@@ -20,4 +20,6 @@ public class Constants {
   public static final boolean kDriveRearRightInverted = false;
 
   public static final int kArduinoLEDBytesToSend = 6;
+
+  public static final int kAllowedAnglePosError = 200;
 }
