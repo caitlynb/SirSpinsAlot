@@ -82,7 +82,7 @@ public class Robot extends TimedRobot {
     r_arduino.forceUpdate();
     SmartDashboard.putNumber("Current Reading Manipulator Position", r_wrist.getAngle());
 
-    SmartDashboard.putRaw("Raw Sensor Pet", r_frontleftsensor.debugmeasure());
+    //SmartDashboard.putRaw("Raw Sensor Pet", r_frontleftsensor.debugmeasure());
   }
 
   /**

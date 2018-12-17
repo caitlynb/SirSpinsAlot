@@ -46,16 +46,16 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  Joystick driverJoystick = new Joystick(0);
+  public static Joystick driverJoystick = new Joystick(0);
 
   // CAB:  FIXME WITH REAL BUTTON ASSIGMENTS
-  Button alignRobotToSideWallButton = new JoystickButton(driverJoystick, 3);
-  Button alignRobotToFrontWallButton = new JoystickButton(driverJoystick, 4);
-  Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 10);
-  Button turnAirlockGearButton = new JoystickButton(driverJoystick, 1);
-  Button turnAirlockBarButton = new JoystickButton(driverJoystick, 2);
-  Button toggleHeadlights = new JoystickButton(driverJoystick, 13);
-  Button controlManipulatorFromDashboard = new JoystickButton(driverJoystick, 9);
+  public static Button alignRobotToSideWallButton = new JoystickButton(driverJoystick, 3);
+  public static Button alignRobotToFrontWallButton = new JoystickButton(driverJoystick, 4);
+  public static Button alignManipulatorToGameElementButton = new JoystickButton(driverJoystick, 10);
+  public static Button turnAirlockGearButton = new JoystickButton(driverJoystick, 1);
+  public static Button turnAirlockBarButton = new JoystickButton(driverJoystick, 2);
+  public static Button toggleHeadlights = new JoystickButton(driverJoystick, 13);
+  public static Button controlManipulatorFromDashboard = new JoystickButton(driverJoystick, 9);
 
   // Select one of the below and uncomment depending on what controller is in use.
 
@@ -67,15 +67,16 @@ public class OI {
 
   // CAB:  FIXME WITH REAL NUMBERS
   // PS4 Gamepad
-  public static int driverJoystickXAxis = 1;
-  public static int driverJoystickYAxis = 2;
-  public static int driverJoystickTwistAxis = 3;
+  public static int driverJoystickXAxis = 1;  // In NED convention, this is front positive, back negative - Joystick is inverted from this
+  public static int driverJoystickYAxis = 0;  // in NED convention, this is right positive, left negative - Joystick is inverted from this
+  public static int driverJoystickTwistAxis = 2;
 
   // Set up some commands
   public OI(){
     toggleHeadlights.toggleWhenPressed(new TurnOnHeadlights());
     controlManipulatorFromDashboard.whileHeld(new SetManipAngle());
-
+    alignRobotToSideWallButton.whileHeld(new DriveOrientedToSideWall());
+    alignRobotToFrontWallButton.whileHeld(new DriveOrientedToFront());
     // alignRobotToSideWallButton.whileHeld(new debugDriveBaseForward());
     // alignRobotToFrontWallButton.whileHeld(new debugWristForward());
   }

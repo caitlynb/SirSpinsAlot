@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.Constants;
+import frc.robot.commands.DefaultDriveCommand;
 
 //import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -101,7 +102,7 @@ public class DriveBaseMecanum extends Subsystem {
 
     // MAJOR CRUTCH
     // TODO:  Put in some proper inverse kinematics driven by encoders!
-    //drivebase = new MecanumDrive(mc_front_left, mc_rear_left, mc_front_right, mc_rear_right);
+    drivebase = new MecanumDrive(mc_front_left, mc_rear_left, mc_front_right, mc_rear_right);
 
   }
 
@@ -109,6 +110,7 @@ public class DriveBaseMecanum extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DefaultDriveCommand());
   }
 
   public void drivePolar(double magnitude, double angle, double zRotation){
